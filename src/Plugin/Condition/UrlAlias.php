@@ -2,12 +2,14 @@
 
 /**
  * @file
- * Contains \Drupal\rules\Plugin\Condition\UserIsBlocked.
+ * Contains \Drupal\rules\Plugin\Condition\UrlAlias.
  */
 
 namespace Drupal\rules\Plugin\Condition;
 
+use Drupal\Core\CacheDecorator\AliasManagerCacheDecorator;
 use Drupal\Core\Condition\ConditionPluginBase;
+use Drupal\Core\Path\AliasManager;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -39,10 +41,16 @@ class UrlAlias extends ConditionPluginBase implements ContainerFactoryPluginInte
   protected $aliasManager;
 
   /**
+   * Constructs a PathHasUrlAlias object.
+   *
    * @param array $configuration
-   * @param $plugin_id
-   * @param $plugin_definition
-   * @param AliasManagerCacheDecorator $alias_manager AliasManager Service
+   * A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   * The plugin ID for the plugin instance.
+   * @param mixed $plugin_definition
+   * The plugin implementation definition.
+   * @param \Drupal\Core\CacheDecorator\AliasManagerCacheDecorator $alias_manager
+   * The AliasManager service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, AliasManagerCacheDecorator $alias_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
